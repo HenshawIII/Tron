@@ -88,7 +88,7 @@ const Navbar = () => {
               <div className="w-10 h-10 bg-gradient-to-r from-[#8F72D0] rotate-[45deg] to-[#347FB0] rounded-lg flex items-center justify-center">
                 <span className="absolute text-white font-bold text-lg -rotate-[45deg]">X</span>
               </div>
-              <Link to="/" className="px-2 text-2xl font-black text-white hover:text-gray-300 transition-colors">
+              <Link to="/" className="px-2 text-2xl font-[600] text-white hover:text-gray-300 transition-colors">
                 Tronixx
               </Link>
             </div>
@@ -129,12 +129,23 @@ const Navbar = () => {
 
             {/* CTA Button */}
             <div className="hidden lg:block">
-              <Link
-                to="/get-started"
-                className="bg-gradient-to-r from-[#8F72D0] to-[#347FB0] text-white px-6 py-2 rounded-lg hover:from-purple-600 hover:to-blue-600 transition-all duration-300"
-              >
-                Get Started
-              </Link>
+            <Link
+             to="/get-started"
+             className="relative font-medium font-manrope text-[16px] text-white px-6 py-2 rounded-full text-lg overflow-hidden group transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+             style={{
+               background: 'linear-gradient(to right, #8F72D0, #347FB0)'
+             }}
+           >
+             <span className="relative z-20 transition-colors duration-300 group-hover:text-gray-900">
+               Get Started
+             </span>
+             <div 
+               className="absolute inset-0 bg-white rounded-full transform scale-y-0 origin-bottom transition-transform duration-300 group-hover:scale-y-100 z-10"
+               style={{
+                 transitionTimingFunction: 'cubic-bezier(0.4, 0, 0.2, 1)'
+               }}
+             ></div>
+           </Link>
             </div>
 
             {/* Mobile menu button */}

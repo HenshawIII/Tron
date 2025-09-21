@@ -1,6 +1,34 @@
 import React from 'react'
+import {useGSAP} from '@gsap/react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 const Goals = () => {
+
+  useGSAP(() => {
+
+    gsap.set('.goals-text', {
+      opacity: 0,
+      y: 50,
+      filter: 'blur(20px)'
+    })
+    
+    gsap.to('.goals-text', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 2,
+      stagger: 0.5,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: '.goals-text',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none none'
+      }
+    })
+  },[])
   return (
     <>
     <section className="relative w-[94%] xl:w-[97%] my-2 overflow-hidden  mx-auto rounded-3xl min-h-screen bg-[#0C0C0C] py-32 px-4 sm:px-6 lg:px-8">
@@ -23,7 +51,7 @@ const Goals = () => {
           <div className="absolute top-20 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-white rounded-full opacity-60"></div>
 
           {/* Main heading */}
-          <div className="text-left max-w-6xl ">
+          <div className="text-left max-w-6xl goals-text">
             <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-[500] text-white leading-tight mb-8">
               Blockchain Project Timeline &<br />
               Strategic Goals
@@ -35,7 +63,7 @@ const Goals = () => {
             </p>
           </div>
         </div>
-        <div className="flex flex-col lg:flex-row relative lg:mt-10">
+        <div className="flex flex-col lg:flex-row relative lg:mt-10 goals-text">
           <div className="absolute top-0 left-0">
             <img src={'../public/unii.avif'} alt="hero-bg" className='w-[60%] h-[50%] lg:w-full lg:h-full' />
           </div>

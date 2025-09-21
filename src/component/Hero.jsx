@@ -1,6 +1,19 @@
 import { Link } from 'react-router-dom'
+import {useGSAP} from '@gsap/react'
+import { gsap } from 'gsap'
+
 
 const Hero = () => {
+
+  useGSAP(() => {
+    gsap.from('.hero-text', {
+      opacity: 0,
+      y: 0,
+      filter: 'blur(20px)',
+      duration: 2,
+      ease: 'power1.inOut'
+    })
+  },[])
   return (
     <section className="relative overflow-hidden xl:pb-20  bg-black w-[99vw] ">
       <div className="  flex flex-col items-center justify-start pt-40  xl:justify-center min-h-[50vh] xl:min-h-[120vh]  overflow-hidden xl:pb-28 pb-20  px-6 text-center">
@@ -29,11 +42,11 @@ const Hero = () => {
           <img src={'../public/Effect25.png'} alt="hero-bg" className='w-[60%] h-[50%] lg:w-full lg:h-full' />
         </div>
       
-        <div className="absolute left-1/2 -translate-x-1/2 -top-64 w-[70vw] h-[70vw] border-2 border-gray-500/20 rounded-[50%] transform "></div>
+        <div className=" absolute left-1/2 -translate-x-1/2 -top-64 w-[70vw] h-[70vw] border-2 border-gray-500/20 rounded-[50%] transform "></div>
         
        
         {/* Announcement Banner */}
-        <div className="mb-1 flex z-20 items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-[#347FB0]">
+        <div className="hero-text mb-1 flex z-20 items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 border border-[#347FB0]">
           <div className="flex -space-x-2">
             <div className="w-8 h-8 rounded-full border-2 border-white overflow-hidden">
               <img 
@@ -78,7 +91,7 @@ const Hero = () => {
         </div>
 
          {/* Main Headline */}
-         <h1 className="text-[32px] z-20 md:text-[64px] xl:text-[88px] font-[600] text-white mb-2 ">
+         <h1 className="hero-text text-[32px] z-20 md:text-[64px] xl:text-[88px] font-[600] text-white mb-2 ">
            <span className="block">Blockchain Technology</span>
          
            <span className="block ">
@@ -87,14 +100,14 @@ const Hero = () => {
          </h1>
 
          {/* Description */}
-         <p className="text-xl z-20 font-light md:text-[16px] text-[#cdc8c8] mb-12 max-w-xl leading-relaxed font-manrope">
+         <p className="hero-text text-xl z-20 font-light md:text-[16px] text-[#cdc8c8] mb-12 max-w-xl leading-relaxed font-manrope">
            Tronixx is the all-in-one platform for crypto token creation, smart contract deployment, and decentralised launch—built for the future of Web3.
          </p>
 
         
 
         {/* CTA Buttons */}
-        <div className="flex flex-col  sm:flex-row gap-4 items-center">
+        <div className="flex flex-col hero-text  sm:flex-row gap-4 items-center">
            <Link
              to="/get-started"
              className="relative font-medium font-manrope text-[16px] text-white px-8 py-3 rounded-full text-lg  overflow-hidden group transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"

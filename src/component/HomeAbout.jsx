@@ -1,9 +1,43 @@
-import React from 'react'
+import React, { useRef } from 'react'
 import Scroll from './scroll'
+import {useGSAP} from '@gsap/react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+
+// Register ScrollTrigger plugin
+gsap.registerPlugin(ScrollTrigger)
+
 
 const HomeAbout = () => {
+  const sectionRef = useRef(null)
+
+  useGSAP(() => {
+    // Set initial state
+    gsap.set('.hero-tex', {
+      opacity: 0,
+      y: 50,
+      scale: 0.8,
+      filter: 'blur(20px)'
+    })
+
+    // Create scroll trigger animation
+    gsap.to('.hero-tex', {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      filter: 'blur(0px)',
+      duration: 2,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: sectionRef.current,
+        start: 'top 50%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none none'
+      }
+    })
+  }, { scope: sectionRef })
   return (
-    <section className="relative min-h-screen bg-black py-20  px-4 sm:px-6 lg:px-0">
+    <section ref={sectionRef} className="relative min-h-screen bg-black py-20  px-4 sm:px-6 lg:px-0">
       
       {/* Horizontal Line at Bottom with Circle Break */}
       <div className="absolute top-[0%] z-40 left-0 right-0 flex items-center justify-center px-8">
@@ -24,7 +58,7 @@ const HomeAbout = () => {
         <Scroll />
          
         {/* Main Content */}
-        <div className="grid grid-cols-6 w-[90%] mx-auto gap-2  ">
+        <div className="hero-tex grid grid-cols-6 w-[90%] mx-auto gap-2  ">
 
             {/* About Us Button */}
           <div className="relative flex justify-start items-start" >
@@ -52,7 +86,7 @@ const HomeAbout = () => {
           
         </div>
         {/* Feature Cards Section */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 xl:gap-8 gap-4 mt-4 w-[90%] mx-auto">
+        <div className="hero-tex grid grid-cols-1 lg:grid-cols-3 xl:gap-8 gap-4 mt-4 w-[90%] mx-auto">
             {/* Card 1 - Token Creation */}
                 <div className="bg-[#0c0c0c] rounded-3xl md:p-8 xl:p-12 p-4 border border-gray-800 hover:border-gray-700 xl:h-[55vh] h-[30vh] transition-all duration-300 hover:shadow-lg">
               <div className="flex flex-col items-start space-y-4 h-full justify-between">

@@ -30,7 +30,7 @@ const Footer = () => {
             
             {/* Description */}
             <p className="text-white/80 text-base leading-relaxed font-manrope max-w-md">
-              Tokenix empowers users to launch secure, scalable blockchain projects using powerful no-code tools and seamless Web3 integration.
+              Tronixx empowers users to launch secure, scalable blockchain projects using powerful no-code tools and seamless Web3 integration.
             </p>
           </div>
 
@@ -193,7 +193,7 @@ const Footer = () => {
           </div>
         </div>
           <div className="text-center text-white/60 font-manrope">
-            <p>&copy; 2024 Tokenix. All rights reserved.</p>
+            <p>&copy; 2024 Tronixx. All rights reserved.</p>
           </div>
         </div>
       </div>

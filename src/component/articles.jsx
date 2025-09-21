@@ -1,6 +1,32 @@
 import React from 'react'
+import {useGSAP} from '@gsap/react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
+
 
 const Articles = () => {
+  useGSAP(() => {
+    gsap.set('.articles-text', {
+      opacity: 0,
+      y: 50,
+      filter: 'blur(20px)'
+    })
+
+    gsap.to('.articles-text', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 2,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: '.articles-text',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none none'
+      }
+    })
+  },[])
   return (
     <section className="relative w-[94%] xl:w-[97%]  my-2 mx-auto py-20 px-4 sm:px-6 lg:px-8 bg-[#0C0C0C] rounded-3xl  ">
       {/* Background Gradient Effects */}
@@ -30,14 +56,14 @@ const Articles = () => {
             </div>
            
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-[500]  text-white leading-tight">
+            <h2 className="articles-text text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-[500]  text-white leading-tight">
               Our articles are written by professionals
             </h2>
           </div>
 
           {/* Right Side - Supporting Text */}
           <div className="flex items-start col-span-1">
-            <p className="text-[16px] text-[#C8C4C4] leading-relaxed font-manrope max-w-2xl">
+            <p className="articles-text text-[16px] text-[#C8C4C4] leading-relaxed font-manrope max-w-2xl">
               Our articles are crafted by industry professionals, ensuring accurate, insightful, and up-to-date content for every crypto enthusiast and investor.
             </p>
           </div>

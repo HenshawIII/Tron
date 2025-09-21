@@ -1,7 +1,32 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
+import {useGSAP} from '@gsap/react'
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 
 const CTA = () => {
+  useGSAP(() => {
+    gsap.set('.cta-text', {
+      opacity: 0,
+      y: 50,
+      filter: 'blur(20px)'
+    })
+
+    gsap.to('.cta-text', {
+      opacity: 1,
+      y: 0,
+      filter: 'blur(0px)',
+      duration: 2,
+      ease: 'power1.inOut',
+      scrollTrigger: {
+        trigger: '.cta-text',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        toggleActions: 'play none none none'
+      }
+    })
+  },[])
   return (
     <section className="relative w-[94%] xl:w-[94%] bg-[#0c0c0c] mx-auto mb-20 lg:h-[95vh] flex items-center justify-center overflow-hidden py-10 rounded-3xl">
       {/* Background Gradient */}
@@ -44,7 +69,7 @@ const CTA = () => {
       </div>
 
       {/* Main Content */}
-      <div className="relative z-10 text-center px-6 sm:px-8 lg:px-12 max-w-4xl mx-auto">
+      <div className="cta-text relative z-10 text-center px-6 sm:px-8 lg:px-12 max-w-4xl mx-auto">
         
         {/* Main Headline */}
         <h1 className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-[500] text-white leading-tight mb-8">
